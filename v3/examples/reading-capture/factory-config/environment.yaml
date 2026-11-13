@@ -1,0 +1,5 @@
+# environment.yaml (factory configuration repository): guardrails, no stack
+base_image_sources: [registry.example/approved/*]
+package_registries: [registry.npmjs.org, pypi.org]
+secret_sources: [vault://factory/fieldco]
+network_allowlist: [registry.example:443, api.model.example:443]

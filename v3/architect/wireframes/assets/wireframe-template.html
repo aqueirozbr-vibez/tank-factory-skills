@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCREEN-ID Screen name</title>
+  <style>
+    :root {
+      /* One variable per styleguide token: color.primary -> --color-primary */
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: var(--space-4); background: var(--color-ground); color: var(--color-ink); font: var(--type-body); }
+    h1 { font: var(--type-title); margin: 0 0 var(--space-4); }
+    .states { margin-top: var(--space-6); border-top: 1px solid var(--color-line); padding-top: var(--space-4); }
+    .states h2 { font: var(--type-label); color: var(--color-muted); }
+    /* Phone first. Desktop layout below. */
+    @media (min-width: 1024px) {
+      body { padding: var(--space-6); }
+    }
+  </style>
+</head>
+<body data-screen="SCREEN-ID">
+  <main>
+    <h1>Screen name</h1>
+    <!-- The screen in its default state, with the PRD's example values. -->
+  </main>
+  <section class="states" aria-label="Component states">
+    <h2>States</h2>
+    <!-- One block per component and state from the prompt's States line:
+         <div data-component="Component" data-state="state">…</div> -->
+  </section>
+</body>
+</html>

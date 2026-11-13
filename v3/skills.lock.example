@@ -1,0 +1,11 @@
+# One entry per skill: source and content hash (sorted relative paths + bytes). Regenerate with build.py.
+architect/build-plan: {source: image, sha256: bb55eb245f1677ffebc93a9ac8a3fb12760032f734f3e04b21f46920f89e4a28}
+architect/context-build: {source: image, sha256: 293427f401fc75cdfe2bdd98da074463579fea1f19da4b74848246c65acc43f6}
+architect/po-evals: {source: image, sha256: 8124169cfd475eaefbc79f2813a27e6ea56b3613aabbd8b531c2d77de8969271}
+architect/prd: {source: image, sha256: da9bc92e513059c28f8b0f37682605851d0ff7fcf8d75ce2bd40e28b37f8f2bc}
+architect/product-research: {source: image, sha256: 5f7fbf6dbf5491cc5c55b38402ca93bdfdea7324b7eedcd255cbc8da9d90e404}
+architect/stack-profile: {source: image, sha256: be37d3841e4fcb81c7b1e86ed2aa69023d615e9d773c43bcc76c7b7ad6eb9fd6}
+architect/tech-lead-evals: {source: image, sha256: 554eaaadf33c0cd1dc023a817fd0900e2033e69ad6542d4e8d4d9300d29e28c3}
+architect/trd: {source: image, sha256: 1ef4483ecb3ae1f7baa3929c75507a224ab22c30c487074b51440096e443043a}
+architect/ui-prompts: {source: image, sha256: 9eb1b6f41998403d6549a454d1e659fe4afa848af2626410115ddbfb444d531b}
+architect/wireframes: {source: image, sha256: d7809f3656c808756b48c82d878b7de85d499106b1d1bd7327f535e724097404}

@@ -1,6 +1,6 @@
 # Tank Factory skills
 
-Agent skills for [Tank Factory v1](https://github.com/aqueirozbr-vibez/tank-factory-v1).
+Agent skills for [Tank Factory v1](https://github.com/aqueirozbr-vibez/tank-factory-v1) and the Tank Factory v3 Architect agent.
 A skill is a folder an agent loads when a task calls for it. It holds a `SKILL.md` with the
 instructions, plus the templates, references and scripts those instructions point to.
 
@@ -13,6 +13,28 @@ instructions, plus the templates, references and scripts those instructions poin
 
 The two work as a pair. The PRD's fixed headings are the anchors the TRD cites, and the example
 TRD was written from the example PRD.
+
+## Tank Factory v3 — Architect skills
+
+[`v3/`](v3/README.md) holds the ten skills the v3 Architect agent runs on the new-product path
+(`brief_to_backlog/full`), one per stage, from research to the build plan:
+
+| Hat | Skills |
+| --- | --- |
+| Product Owner | `product-research`, `prd`, `po-evals` |
+| Designer | `ui-prompts`, `wireframes` |
+| Tech Lead | `trd`, `stack-profile`, `tech-lead-evals` |
+| Architect | `context-build`, `build-plan` |
+
+Each folder under `v3/architect/` holds `SKILL.md`, a template, a passing example and a lint
+script that mirrors the stage's code gate. [`v3/visuals/`](v3/visuals/README.md) holds high-resolution
+PNGs: one board per building block of the sample product, and the slides of the deck *The Initial Context*. `v3/examples/reading-capture/` is one fictional product
+carried through all ten. From `v3/`, `python selftest.py` checks that every lint passes on the
+example and fails on a seeded violation.
+
+The v3 `prd` and `trd` share their names with the v1 skills above but follow the v3 shapes. Install
+one set or the other under a given name; the v3 index, the factory ids and the decisions made where
+v3 is silent are in [`v3/README.md`](v3/README.md).
 
 ## Use a skill
 
@@ -71,3 +93,8 @@ covers writing those issues.
   `scripts/`. Scripts use the Python 3 standard library only.
 - Keep `SKILL.md` short and point to the references for detail.
 - Run the skill's own checks against its example before you push.
+
+## Credits
+
+© 2026 Tank Factory. All skills and other contents of this repository are the property of Tank
+Factory, licensed under [CC BY 4.0](LICENSE). Reuse them with credit as set out in [NOTICE.md](NOTICE.md).

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>S-01 Reading Capture</title>
+  <style>
+    :root {
+      --color-ground: #ffffff; --color-ink: #17202a; --color-muted: #5b6773; --color-primary: #1f5fa8;
+      --color-on-primary: #ffffff; --color-line: #c9d1d9; --color-danger: #a4262c; --color-warn: #7a5200;
+      --color-ok: #1e6b3a;
+      --type-body: 400 16px/24px Inter, system-ui, sans-serif;
+      --type-label: 500 14px/20px Inter, system-ui, sans-serif;
+      --type-title: 600 22px/28px Inter, system-ui, sans-serif;
+      --type-value: 600 28px/36px Inter, system-ui, sans-serif;
+      --space-1: 4px; --space-2: 8px; --space-4: 16px; --space-6: 24px;
+      --radius-control: 6px; --elevation-none: none; --motion-state: 120ms ease-out;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: var(--space-4); background: var(--color-ground); color: var(--color-ink); font: var(--type-body); }
+    h1 { font: var(--type-title); margin: 0 0 var(--space-4); }
+    h2 { font: var(--type-label); color: var(--color-muted); margin: var(--space-6) 0 var(--space-2); }
+    label, th { font: var(--type-label); }
+    input { width: 100%; min-height: 48px; padding: var(--space-2); border: 1px solid var(--color-line); border-radius: var(--radius-control); font: var(--type-body); color: var(--color-ink); box-shadow: var(--elevation-none); transition: border-color var(--motion-state); }
+    button { min-height: 48px; padding: var(--space-2) var(--space-4); border: 1px solid var(--color-primary); border-radius: var(--radius-control); background: var(--color-primary); color: var(--color-on-primary); font: var(--type-label); }
+    button.secondary { background: var(--color-ground); color: var(--color-primary); }
+    button[disabled], input[disabled] { border-color: var(--color-line); background: var(--color-ground); color: var(--color-muted); }
+    .is-focus { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+    .muted { color: var(--color-muted); }
+    .badge { font: var(--type-label); padding: var(--space-1) var(--space-2); border: 1px solid currentColor; border-radius: var(--radius-control); }
+    .warn { color: var(--color-warn); } .ok { color: var(--color-ok); } .danger { color: var(--color-danger); }
+    .states { margin-top: var(--space-6); border-top: 1px solid var(--color-line); padding-top: var(--space-4); }
+    .state { margin-bottom: var(--space-6); }
+    .value { font: var(--type-value); min-height: 56px; }
+    .save { width: 100%; min-height: 56px; margin-top: var(--space-4); }
+    .reading-form.is-error input { border-color: var(--color-danger); }
+    ul.readings { list-style: none; margin: 0; padding: 0; }
+    ul.readings li { display: flex; justify-content: space-between; gap: var(--space-2); padding: var(--space-2) 0; border-bottom: 1px solid var(--color-line); }
+    @media (min-width: 1024px) {
+      body { padding: var(--space-6); }
+      main { display: grid; grid-template-columns: 420px 1fr; gap: var(--space-6); align-items: start; }
+      main h1 { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body data-screen="S-01">
+  <main>
+    <h1>Reading Capture</h1>
+    <div data-component="ReadingForm" data-state="default">
+      <form class="reading-form ">
+        <label for="tag">Asset tag</label>
+        <input id="tag" value="PMP-0412">
+        <p class="muted">pump · bar</p>
+        <label for="value">Value</label>
+        <input id="value" class="value" inputmode="decimal" value="7.25">
+        <button type="button" class="save">Save reading</button>
+      </form>
+    </div>
+    <div data-component="ReadingList" data-state="default">
+      <h2>Today's readings</h2>
+        <ul class="readings" aria-label="Today's readings">
+          <li><span>7.25 bar · PMP-0412</span><span class="ok">&#10003; Synced</span></li>
+          <li><span>6.80 bar · PMP-0398</span><span class="warn">&#8635; Unsent</span></li>
+        </ul>
+    </div>
+  </main>
+  <section class="states" aria-label="Component states">
+    <h2>States</h2>
+    <div class="state" data-component="ReadingForm" data-state="focus">
+      <h2>ReadingForm · focus</h2>
+      <label for="f1">Value</label>
+      <input id="f1" class="value is-focus" inputmode="decimal" value="7.2">
+    </div>
+    <div class="state" data-component="ReadingForm" data-state="disabled">
+      <h2>ReadingForm · disabled</h2>
+      <form class="reading-form ">
+        <label for="tagd">Asset tag</label>
+        <input id="tagd" value="PMP-0412" disabled>
+        <p class="muted">pump · bar</p>
+        <label for="valued">Value</label>
+        <input id="valued" class="value" inputmode="decimal" value="7.25" disabled>
+        <button type="button" class="save" disabled>Save reading</button>
+      </form>
+    </div>
+    <div class="state" data-component="ReadingForm" data-state="offline-queued">
+      <h2>ReadingForm · offline-queued</h2>
+      <p class="warn"><span class="badge">&#8635; Unsent</span> Saved on this phone. It will send when you are back online.</p>
+    </div>
+    <div class="state" data-component="ReadingForm" data-state="error">
+      <h2>ReadingForm · error</h2>
+      <form class="reading-form is-error">
+        <label for="tage">Asset tag</label>
+        <input id="tage" value="XXX-0000">
+        <p class="muted">pump · bar</p>
+        <label for="valuee">Value</label>
+        <input id="valuee" class="value" inputmode="decimal" value="7.25">
+        <button type="button" class="save">Save reading</button>
+      </form>
+      <p class="danger" role="alert">&#9888; Tag not found. Check the tag or ask your planner.</p>
+    </div>
+    <div class="state" data-component="ReadingList" data-state="empty">
+      <h2>ReadingList · empty</h2>
+      <p class="muted">No readings yet today.</p>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "product_kind": "<ui|service|ui_and_service>",
+  "repositories": [
+    {
+      "repository": "<owner/name>",
+      "template": "<template id, new products only>",
+      "languages": ["<language@version>"],
+      "package_manager": "<name@version>",
+      "base_image": "<image from an allowed source>",
+      "quality": {
+        "format": "<command>",
+        "lint": "<command>",
+        "typecheck": "<command>",
+        "test": "<command>",
+        "focused_test_pattern": "<command with {files}>"
+      },
+      "boundary_check": "<tool>",
+      "bindings": "<framework>",
+      "scanners": "<scanner set>",
+      "load_test": "<tool>"
+    }
+  ],
+  "guardrail_requests": []
+}

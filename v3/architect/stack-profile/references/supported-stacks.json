@@ -1,0 +1,25 @@
+{
+  "_note": "Tank Factory v3.0 supported stacks, taken from the examples in the v3 PRD (§A15 stack.yaml). The list shipped in the factory image is the authority; pass it with --supported when it differs.",
+  "stacks": [
+    {
+      "id": "typescript-node",
+      "languages": ["typescript"],
+      "package_managers": {"pnpm": "registry.npmjs.org", "npm": "registry.npmjs.org", "yarn": "registry.npmjs.org"},
+      "templates": ["typescript-web"],
+      "boundary_check": ["dependency-cruiser"],
+      "bindings": ["playwright"],
+      "scanners": ["typescript-default"],
+      "load_test": ["k6"]
+    },
+    {
+      "id": "python",
+      "languages": ["python"],
+      "package_managers": {"uv": "pypi.org", "pip": "pypi.org", "poetry": "pypi.org"},
+      "templates": ["python-service"],
+      "boundary_check": ["import-linter"],
+      "bindings": ["pytest-bdd"],
+      "scanners": ["python-default"],
+      "load_test": ["k6"]
+    }
+  ]
+}

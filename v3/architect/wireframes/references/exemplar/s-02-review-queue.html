@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>S-02 Review Queue</title>
+  <style>
+    :root {
+      --color-ground: #ffffff; --color-ink: #17202a; --color-muted: #5b6773; --color-primary: #1f5fa8;
+      --color-on-primary: #ffffff; --color-line: #c9d1d9; --color-danger: #a4262c; --color-warn: #7a5200;
+      --color-ok: #1e6b3a;
+      --type-body: 400 16px/24px Inter, system-ui, sans-serif;
+      --type-label: 500 14px/20px Inter, system-ui, sans-serif;
+      --type-title: 600 22px/28px Inter, system-ui, sans-serif;
+      --type-value: 600 28px/36px Inter, system-ui, sans-serif;
+      --space-1: 4px; --space-2: 8px; --space-4: 16px; --space-6: 24px;
+      --radius-control: 6px; --elevation-none: none; --motion-state: 120ms ease-out;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: var(--space-4); background: var(--color-ground); color: var(--color-ink); font: var(--type-body); }
+    h1 { font: var(--type-title); margin: 0 0 var(--space-4); }
+    h2 { font: var(--type-label); color: var(--color-muted); margin: var(--space-6) 0 var(--space-2); }
+    label, th { font: var(--type-label); }
+    input { width: 100%; min-height: 48px; padding: var(--space-2); border: 1px solid var(--color-line); border-radius: var(--radius-control); font: var(--type-body); color: var(--color-ink); box-shadow: var(--elevation-none); transition: border-color var(--motion-state); }
+    button { min-height: 48px; padding: var(--space-2) var(--space-4); border: 1px solid var(--color-primary); border-radius: var(--radius-control); background: var(--color-primary); color: var(--color-on-primary); font: var(--type-label); }
+    button.secondary { background: var(--color-ground); color: var(--color-primary); }
+    button[disabled], input[disabled] { border-color: var(--color-line); background: var(--color-ground); color: var(--color-muted); }
+    .is-focus { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+    .muted { color: var(--color-muted); }
+    .badge { font: var(--type-label); padding: var(--space-1) var(--space-2); border: 1px solid currentColor; border-radius: var(--radius-control); }
+    .warn { color: var(--color-warn); } .ok { color: var(--color-ok); } .danger { color: var(--color-danger); }
+    .states { margin-top: var(--space-6); border-top: 1px solid var(--color-line); padding-top: var(--space-4); }
+    .state { margin-bottom: var(--space-6); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: var(--space-2); border-bottom: 1px solid var(--color-line); vertical-align: top; }
+    .actions { display: flex; gap: var(--space-2); }
+    .skeleton { height: 20px; background: var(--color-line); border-radius: var(--radius-control); margin-bottom: var(--space-2); }
+    /* Phone: each row is a card, summary first, buttons full width. */
+    thead { display: none; }
+    tr { display: block; padding: var(--space-4) 0; border-bottom: 1px solid var(--color-line); }
+    td { display: block; border: 0; padding: var(--space-1) 0; }
+    td.summary { order: -1; font: var(--type-label); }
+    .actions button { flex: 1; }
+    @media (min-width: 1024px) {
+      body { padding: var(--space-6); }
+      thead { display: table-header-group; }
+      tr { display: table-row; padding: 0; }
+      td { display: table-cell; padding: var(--space-2); border-bottom: 1px solid var(--color-line); }
+      .actions button { flex: none; }
+    }
+  </style>
+</head>
+<body data-screen="S-02">
+  <main>
+    <h1>Review Queue <span class="muted">· 1 open</span></h1>
+    <div data-component="AnomalyTable" data-state="default">
+      <table>
+        <thead><tr><th>Asset</th><th>Value</th><th>Range</th><th>Summary</th><th>Captured</th><th>Decision</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>PMP-0412</td>
+            <td>9.10 bar</td>
+            <td>4.0 to 9.0 bar</td>
+            <td class="summary">9.10 bar is 2.25 above this pump's 30-day mean</td>
+            <td>2026-11-11 08:42</td>
+            <td><div data-component="DecisionButtons" data-state="default"><div class="actions"><button type="button" class="">Confirm</button><button type="button" class="secondary">Dismiss</button></div></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <section class="states" aria-label="Component states">
+    <h2>States</h2>
+    <div class="state" data-component="AnomalyTable" data-state="loading">
+      <h2>AnomalyTable · loading</h2>
+      <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+      <p class="muted">Loading anomalies</p>
+    </div>
+    <div class="state" data-component="AnomalyTable" data-state="empty">
+      <h2>AnomalyTable · empty</h2>
+      <p class="muted">Nothing to review.</p>
+    </div>
+    <div class="state" data-component="AnomalyTable" data-state="error">
+      <h2>AnomalyTable · error</h2>
+      <p class="danger" role="alert">&#9888; Could not load anomalies. Try again.</p>
+    </div>
+    <div class="state" data-component="DecisionButtons" data-state="focus">
+      <h2>DecisionButtons · focus</h2>
+      <div class="actions"><button type="button" class="is-focus">Confirm</button><button type="button" class="secondary">Dismiss</button></div>
+    </div>
+    <div class="state" data-component="DecisionButtons" data-state="disabled">
+      <h2>DecisionButtons · disabled (what an inspector sees)</h2>
+      <div class="actions"><button type="button" class="" disabled>Confirm</button><button type="button" class="secondary" disabled>Dismiss</button></div>
+    </div>
+  </section>
+</body>
+</html>

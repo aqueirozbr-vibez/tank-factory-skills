@@ -1,0 +1,9 @@
+# Standards for fieldco/reading-api, cited by context/code-standards.md.
+line-length = 100
+[lint]
+select = ["E", "F", "B", "C901", "PLR2004", "BLE001", "S110", "SIM115", "PLR0912", "PLR0915"]
+[lint.mccabe]
+max-complexity = 10
+[lint.pylint]
+max-branches = 12
+max-statements = 40
