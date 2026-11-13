@@ -1,20 +1,4 @@
-# Tank Factory skills
-
-Agent skills for [Tank Factory v1](https://github.com/aqueirozbr-vibez/tank-factory-v1) and the Tank Factory v3 Architect agent.
-A skill is a folder an agent loads when a task calls for it. It holds a `SKILL.md` with the
-instructions, plus the templates, references and scripts those instructions point to.
-
-## Skills
-
-| Skill | What it does | What is inside |
-| --- | --- | --- |
-| [`prd`](skills/prd/SKILL.md) | Writes a Product Requirements Document in a fixed shape: capabilities with the guarantee each holds, numeric goals, personas, testable requirements, a published instrument for every automated judgment, phases with numeric gates, risks and open questions. | Template, section contract, a full example PRD, `lint_prd.py` |
-| [`trd`](skills/trd/SKILL.md) | Writes the Technical Requirements Document from a PRD: component decisions, C4 and Mermaid diagrams, data model, API contract, network, agents, security, tests and open decisions, each section traced to the PRD line it serves. | Template, section contract, diagram patterns, a full example TRD, `lint_trd.py` |
-
-The two work as a pair. The PRD's fixed headings are the anchors the TRD cites, and the example
-TRD was written from the example PRD.
-
-## Tank Factory v3 — Architect skills
+# Tank Factory Skills — Architect v3
 
 [`v3/`](v3/README.md) holds the ten skills the v3 Architect agent runs on the new-product path
 (`brief_to_backlog/full`), one per stage, from research to the build plan:
